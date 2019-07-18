@@ -1,0 +1,825 @@
+
+*{
+    margin: 0;
+    padding:0;
+}
+ul,li{
+    list-style: none;
+}
+b{
+    font-weight: normal;
+}
+em{
+    font-style: normal;
+}
+div{
+    box-sizing: border-box;
+}
+clearfix::after{
+    clear: both;
+    display: block;
+    
+}
+
+$vw:19.2;
+$vh:10.8;
+$tree_bg: #2b3a8c;  // tree背景颜色 
+$color1: #01aae5;   // 学校详情中实时颜色
+$color2:#091950;   // search-input , 右侧背景
+$color3: #4251b6;   // search按钮颜色,右侧内容title背景
+$color4:#ffa000;
+$color5:#182673;  // index_border
+$color6:#07e9aa;  
+$color7:#ff5216;
+
+
+// 弹框右上角关闭按钮不显示
+.el-dialog__headerbtn .el-dialog__close {
+    display: none;
+}
+.dialog_p{
+    font-size: 18/$vh + vh;
+    line-height:50/$vh + vh;
+}
+.dialog_ul{
+    width:90%;
+    height:640/$vh + vh;
+    overflow:hidden;
+    ul{
+        width:110%;
+        height:600/$vh + vh;
+        overflow-y: auto;
+    }
+    li{
+        width:80%;
+        display: inline-flex;
+        justify-content: space-between;
+        font-size: 18/$vh + vh;
+        line-height: 50/$vh + vh;
+    }
+}
+
+
+// 公共样式 -- start
+
+// 主体部分 标题
+.main{
+    width:1350/$vw + vw;
+    height:880/$vh + vh;
+    background-color:#091950;
+    .title{
+        width:1350/$vw + vw;
+        height:50/$vh + vh;
+        color:#fff;
+        background:linear-gradient(to right, $color3,$color2);
+        line-height: 50/$vh + vh;
+        font-size: 24vh/$vh + vh;
+        padding-left: 30/$vw + vw;
+        b{
+            margin: 0 18/$vw + vw;
+        }
+    }
+}
+
+// 公共样式 -- end
+
+// 全局页面 --start
+#app{
+    width:100vw;
+    height:100vh;
+    padding: 30/$vh + vh 90/$vw + vw;
+    background-color:#050c24;
+    .header{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30/$vh + vh;
+        .logo{
+            width: 330/$vw + vw;
+            height:111/$vh + vh;
+            padding:10/$vh + vh 0 0 8/$vw + vw;
+            img{
+                width: 330/$vw + vw;
+                height:111/$vh + vh;
+            }
+        }
+        .banner{
+            width: 1350/$vw + vw;
+            height:111/$vh + vh;
+            img{
+                width: 1350/$vw + vw;
+                height:111/$vh + vh;
+            }
+        }
+    }
+    .container{
+        display: flex;
+        justify-content: space-between;
+        .c_tree{
+            width:330/$vw + vw;
+            height:880/$vh + vh;
+        }
+        .c_class{
+            width: 1350/$vw + vw;
+            height:880/$vh + vh;
+        }
+    }
+}
+// 全局页面 --end
+
+// 首页 -- start
+.main{
+    .con{
+        width:1350/$vw + vw;
+        height:830/$vh + vh;
+        padding: 24/$vh +vh 30/$vw + vw;
+        .con_top{
+            width: 1290/$vw + vw;
+            height:360/$vh + vh;
+            display: flex;
+            justify-content: space-between;
+            .i_bind{
+                width: 390/$vw + vw;
+                height:360/$vh + vh;
+                // border:1/$vw + vw solid $color5;
+            }
+            .i_timeUse{
+                width: 870/$vw + vw;
+                height:360/$vh + vh;
+                position: relative;
+                // border:1/$vw + vw solid $color5;
+                .lineTitle{
+                    width:870/$vw +vw;
+                    height:30/$vh + vh;
+                    position: absolute;
+                    top:10/$vh + vh;
+                    padding: 0 20/$vw + vw;
+                    display: flex;
+                    justify-content: space-between;
+                    .leftTitle{
+                        width:200/$vw + vw;
+                        height:20/$vh +vh;
+                        color:#fff;
+                        font-size: 20/$vh + vh;
+                    }
+                    .rightTitle{
+                        width:160/$vw + vw;
+                        height:30/$vh +vh;
+                        .month{
+                            width:70/$vw + vw;
+                            height:30/$vh + vh;
+                            font-size: 14/$vh +vh;
+                            line-height: 30/$vh +vh;
+                            text-align: center;
+                            border:1/$vw + vw solid $color1;
+                            color:$color1;
+                            border-radius: 4/$vw + vw;
+                            cursor: pointer;
+                            float: left;
+                            margin-right: 10/$vw + vw;
+                        }
+                        .active{
+                            background-color: $color1;
+                            color:#fff;
+                        }
+                    }
+                }
+                
+               
+            }
+        }
+        .con_bottom{
+            width: 1290/$vw + vw;
+            height:380/$vh + vh;
+            margin-top:24/$vh + vh;
+            display:flex;
+            justify-content: space-between;
+            // border:1/$vw + vw solid $color5;
+        }
+    }
+}
+// 首页 -- end
+
+// tree -- start
+.tree{
+    width:330/$vw + vw;
+    height:880/$vh + vh;
+    background-color:$tree_bg;
+    padding: 15/$vh + vh 15/$vw + vw;
+    .search{
+        width: 300/$vw + vw;
+        height:40/$vh + vh;
+        border:1/$vh + vh solid $color1;
+        border-radius: 5/$vw + vw;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: left;
+        input{
+            width: 238/$vw + vw;
+            height:38/$vh + vh;
+            background-color: $color2;
+            line-height: 38/$vh + vh;
+            padding-left: 10/$vw + vw;
+            border:0;
+            border-top-left-radius: 5/$vw + vw;
+            border-bottom-left-radius: 5/$vw + vw;
+            color:$color1;
+            font-size: 18/$vh + vh;
+        }
+        input::-webkit-input-placeholder{
+            color:$color1;
+            font-size: 18/$vh + vh;
+        }
+        .img{
+            display: block;
+            width: 49/$vw + vw;
+            height:38/$vh + vh;
+            padding: 4/$vh + vh 10/$vw + vw;
+            background-color: $color3;
+            border-top-right-radius: 5/$vw + vw;
+            border-bottom-right-radius: 5/$vw + vw;
+            border-left: 1/$vw + vw solid $color1;
+            img{
+                width: 30/$vw + vw;
+                height:30/$vh + vh;
+            }
+        }
+    }
+    .choose{
+        width: 300/$vw + vw;
+        height:40/$vh + vh;
+        display: flex;
+        justify-content: left;
+        margin: 15/$vh + vh 0 4/$vh +vh 0;
+        .choose_all{
+            width: 80/$vw + vw;
+            height:40/$vh +vh;
+            text-align: center;
+            line-height: 40/$vh + vh;
+            color:#fff;
+            background-color:  $color4;
+            border-top-right-radius: 3/$vw + vw;
+            margin-left:1/$vw + vw;
+            cursor: pointer;
+        }
+        .choose_item{
+            width: 90/$vw + vw;
+            height:40/$vh +vh;
+            text-align: center;
+            line-height: 40/$vh + vh;
+            color:#fff;
+            background-color:  $color4;
+            margin-left:10/$vw + vw;
+            border-top-left-radius: 3/$vw + vw;
+            cursor: pointer;
+        }
+        .activeColor{
+            background:linear-gradient(#03a9e5,#4b67dc);
+        }
+    }
+    .autoList{
+        width: 300/$vw + vw;
+        height: 750/$vh + vh;
+        overflow: hidden;
+        .list{
+            width: 320/$vw + vw;
+            height: 750/$vh + vh;
+            overflow-y: auto;
+            .item{
+                width: 290/$vw +vw;
+                height:40/$vh + vh;
+                background-color:#fff;
+                color:#333;
+                line-height:40/$vh + vh;
+                padding-left:10/$vw + vw;
+                display: flex;
+                justify-content: space-between;
+                border:1/$vh +vh solid $color3;
+                margin-top:-1/$vh + vh;
+                cursor: pointer;
+                .more{
+                    width: 0;
+                    height:0;
+                    border:7/$vw + vw solid #fff;
+                    border-left-color: $color3;
+                    margin: 13/$vh + vh 5/$vw + vw 0 0;
+                }
+                .moreText{
+                    font-size: 16/$vh + vh;
+                    color: $color4;
+                    margin-right:10/$vw + vw;
+                }
+            }
+        }
+    }
+    
+}
+// tree -- end
+
+
+
+// 设备在线率 -- start
+.bind{
+    width: 390/$vw + vw;
+    height:360/$vh + vh;
+    border:1/$vw + vw solid $color5;
+    background-image: url('./assets/img/bind_bg.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    .bind_top{
+        width:390/$vw + vw;
+        height:320/$vh + vh;
+        padding-top: 40/$vh + vh;
+        .box{
+            width: 250/$vh + vh;
+            height: 250/$vh + vh;
+            margin: 0 auto;
+            position: relative;
+            border:20/$vh + vh solid $color2;
+            border-radius: 50%;
+            left: 0;
+            top: 0;
+            .clip{
+                width: 250/$vh + vh;
+                height: 250/$vh + vh;
+                position: absolute;
+                top:-20/$vh + vh;
+                left:-20/$vh + vh;
+                border-radius: 50%;
+                clip: rect(0, 250/$vh + vh, 250/$vh + vh, 125/$vh + vh);
+                .left{
+                    width: 250/$vh + vh;
+                    height: 250/$vh + vh;
+                    position: absolute;
+                    border: 20/$vh + vh solid $color1;
+                    border-radius: 50%;
+                    clip: rect(0 125/$vh + vh 250/$vh + vh 0);
+                    transition: transform 2s;
+                }
+                .right{
+                    width: 250/$vh + vh;
+                    height: 250/$vh + vh;
+                    position: absolute;
+                    border: 20/$vh + vh solid $color1;
+                    border-radius: 50%;
+                    clip: rect(0 250/$vh + vh 250/$vh + vh 125/$vh + vh);
+                }
+                .widthNone{
+                    width: 0;
+                }
+            }
+            .num{
+                position: absolute;
+                top: 20/$vh + vh;
+                left: 10/$vh + vh;
+                border-radius: 50%;
+                width: 215/$vh + vh; 
+                height: 100/$vh + vh;
+                text-align: center;
+                line-height: 100/$vh + vh;
+                font-size: 72/$vh + vh;
+                color:$color4;
+                b{
+                    font-size: 48/$vh + vh !important;
+                }
+            }
+            .online{
+                width:140/$vh + vh;
+                height:30/$vh + vh;
+                border: 1/$vw + vw solid $color1;
+                background-color:$color2;
+                font-size: 24/$vh + vh;
+                text-align: center;
+                line-height: 30/$vh + vh;
+                color:$color1;
+                border-radius: 5/$vh + vh;
+                position: absolute;
+                top:120/$vh + vh;
+                left:35/$vh + vh;
+            }
+            .name{
+                width:215/$vh + vh;
+                position: absolute;
+                top:160/$vh + vh;
+                text-align: center;
+                color:#fff;
+                font-size: 22/$vh + vh;
+            }
+            .auto{
+                clip: auto;
+            }
+            .border1{
+                width:255/$vh + vh;
+                height:255/$vh + vh;
+                border:5/$vh + vh solid $color5;
+                border-radius: 50%;
+                position: absolute;
+                top: -23/$vh + vh;
+                left:-23/$vh + vh;
+            }
+            .border2{
+                width:215/$vh + vh;
+                height:215/$vh + vh;
+                border:5/$vh + vh solid $color5;
+                border-radius: 50%;
+                position: absolute;
+                top: -3/$vh + vh;
+                left:-3/$vh + vh;
+            }
+
+        }
+    }
+    .bind_bottom{
+        width:388/$vw + vw;
+        height:40/$vh + vh;
+        padding: 0 30/$vw + vw;
+        color:$color1;
+        font-size: 18/$vh + vh;
+        line-height: 40/$vh + vh;
+        display: inline-flex;
+        justify-content: space-around;
+        background-color: $color5;
+        cursor: pointer;
+    }
+}
+// 设备在线率 -- end
+
+// 月/周使用率 -- start
+.useRate{
+    width: 870/$vw + vw;
+    height:360/$vh + vh;
+    border:1/$vw + vw solid $color5;
+    padding-top:30/$vh + vh;
+    #line{
+        width: 870/$vw + vw;
+        height:330/$vh + vh;
+        // margin-top:30/$vh + vh;
+    }
+    
+}
+// 月/周使用率 -- end
+
+// 全县各个乡镇的使用率 -- start
+.townRate{
+    width:1290/$vw + vw;
+    height:380/$vh + vh;
+    border:1/$vw + vw solid $color5;
+    #bar{
+        width:1290/$vw + vw;
+        height:380/$vh + vh;
+    }
+}
+// 全县各个乡镇的使用率 -- end
+
+// 3/7日未使用 -- start
+.dayNotUse{
+    width:390/$vw + vw;
+    height:380/$vh + vh;
+    border:1/$vw + vw solid $color5;
+    padding:0 24/$vw + vw;
+    .tab{
+        width:332/$vw + vw;
+        height:50/$vh + vh;
+        padding-top:20/$vh + vh;
+        display:flex;
+        justify-content: left;
+
+        .day{
+            width:120/$vw + vw;
+            height:30/$vh + vh;
+            font-size: 14/$vh + vh;
+            line-height: 30/$vh + vh;
+            text-align: center;
+            border:1/$vw + vw solid $color1;
+            border-radius: 5/$vw + vw;
+            margin-right:10/$vw + vw;
+            cursor: pointer;
+        }
+        .activeDay{
+            color:#fff;
+            background-color: $color1;
+        }
+        .noactiveDay{
+            color:$color1;
+            background-color: transparent;
+        }
+    }
+    .list{
+        width:332/$vw + vw;
+        height:330/$vh + vh;
+        overflow: hidden;
+        padding: 15/$vh + vh 0;
+        ul{
+            width:355/$vw + vw;
+            height:330/$vh + vh;
+            overflow-y: auto;
+
+            li{
+                width:332/$vw + vw;
+                height:50/$vh + vh;
+                color:$color1;
+                display: inline-flex;
+                justify-content: space-between;
+                font-size: 16/$vh + vh;
+                line-height:50/$vh + vh;
+                
+            }
+        }
+        
+    }
+}
+.dayNotuseClass{
+    width:390/$vw + vw;
+    height:380/$vh + vh;
+    border:1/$vw + vw solid $color5;
+    padding: 25/$vh + vh 0;
+    display: flex;
+    justify-content: space-between;
+    .day{
+        width:195/$vw + vw;
+        height:330/$vh + vh;
+        text-align: center;
+        font-size: 18/$vh + vh;
+        line-height: 50/$vh + vh;
+        overflow: hidden;
+        p{
+            color:#fff;
+        }
+        ul{
+            width:220/$vw + vw;
+            height:330/$vh + vh;
+            color:$color1;
+            overflow-y: auto;
+        }
+    }
+    .day3{
+        border-right:1/$vw + vw solid $color5;
+    }
+}
+// 3/7日未使用 -- end
+
+// 学校使用率排名 -- start
+.schoolUse{
+    width:870/$vw + vw;
+    height:380/$vh + vh;
+    border:1/$vw + vw solid $color5;
+    display: flex;
+    justify-content: space-between;
+    .schoolUseLeft{
+        width:404/$vw + vw;
+        height:380/$vh + vh;
+        .schoolUseTitle{
+            width:404/$vw + vw;
+            height: 60/$vh + vh;
+            color:#fff;
+            font-size: 22/$vh + vh;
+            line-height: 60/$vh + vh;
+            padding-left:20/$vw + vw;
+        }
+        img{
+            width: 404/$vw +vw;
+            height:293/$vh + vh;
+        }
+    }
+    .list{
+        width:420/$vw + vw;
+        height:380/$vh + vh;
+        padding:30/$vh + vh 20/$vw + vw 0 0;
+        ul{
+            width:400/$vw + vw;
+            height:150/$vh + vh;
+            li{
+                width:400/$vw + vw;
+                height:50/$vh + vh;
+                display: flex;
+                justify-content: space-between;
+                font-size: 20/$vh + vh;
+                line-height:50/$vh + vh;
+                .schoolName{
+                    display: flex;
+                    justify-content: left;
+                    img{
+                        width: 36/$vh + vh;
+                        height:36/$vh+ vh;
+                        margin-top:7/$vh + vh;
+                    }
+                    .nums{
+                        margin-right: 10/$vw + vw;
+                    }
+                }
+            }
+        }
+        .list1{
+            li:nth-child(1){
+                color:#ff8800;
+            }
+            li:nth-child(2){
+                color:#ffa800;
+            }
+            li:nth-child(3){
+                color:#07feb5;
+            }
+        }
+        .list2{
+            width:420/$vw + vw;
+            height:150/$vh + vh;
+            li{
+                color:$color1;
+                .schoolName{
+                    .num{
+                        width:33/$vh + vh;
+                        height:33/$vh + vh;
+                        display: inline-block;
+                        border:1/$vh + vh solid $color1;
+                        border-radius: 50%;
+                        line-height: 35/$vh + vh;
+                        text-align: center;
+                        margin-top:7/$vh + vh;
+                    }
+                }
+            }
+        }
+    }
+}
+// 学校使用率排名 -- end
+
+/* 学校详情--班级实时状态 -- start */
+.class{    
+    .conClass{
+        // width: 100%;
+        width:1350/$vw + vw;
+        // height:560/$vh + vh;
+        font-size: 14/$vh + vh;
+        .top{
+            width: 100%;
+            height:70/$vh + vh;            
+            display: flex;
+            justify-content: space-between;
+            padding: 20/$vh + vh 30/$vw + vw;
+            .tab{
+                width: 140/$vw + vw;
+                height:30/$vh +vh;
+                border:1/$vw + vw solid $color1;
+                border-radius: 3/$vw + vw;
+                line-height:30/$vh + vh;
+                display: flex;
+                justify-content: left;
+                b{
+                    width: 69/$vw + vw;
+                    height:28/$vh + vh;
+                    display:inline-block;
+                    text-align: center;
+                }
+                .real{
+                    // color:#fff;
+                    // background-color: $color1
+                    cursor: pointer;
+                }
+                .statis{
+                    // color: $color1;
+                    // background-color: $color2;
+                    border-top-right-radius: 3/$vw + vw;
+                    border-bottom-right-radius: 3/$vw +vw;
+                    cursor: pointer;
+                }
+            }
+            .online{
+                color:#fff;
+            }
+        }
+        .class_all{
+            width: 1320/$vw + vw;
+            height: 760/$vh + vh;
+            overflow: hidden;
+            padding-left:30/$vw + vw;
+            ul{
+                width: 1350/$vw + vw;
+                height: 760/$vh + vh;
+                overflow-y: auto;
+                li{
+                    width:380/$vw + vw;
+                    height:300/$vh + vh;
+                    border:1/$vw + vw solid #35449e;
+                    border-radius: 5/$vw + vw;
+                    padding: 0 15/$vw + vw;
+                    margin-right: 25/$vw + vw;
+                    margin-bottom: 30/$vh + vh;
+                    float:left;
+                    .class_head{
+                        width: 100%;
+                        height: 40/$vh + vh;
+                        line-height: 40/$vh + vh;
+                        display: inline-flex;
+                        justify-content: space-between;
+                        .name{
+                            color:#db930c;
+                        }
+                        .status0{
+                            color:$color7;
+                            font-size: 13/$vh + vh;
+                        }
+                        .status1{
+                            color:$color6;
+                            font-size: 13/$vh + vh;
+                        }
+                    }
+                    .class_img{
+                        width: 100%;
+                        height:210/$vh + vh;
+                        img{
+                            width: 100%;
+                            height:100%;
+                        }
+                    }
+                    .class_bottom{
+                        width:100%;
+                        height:40/$vh + vh;
+                        display: flex;
+                        justify-content: space-between;
+                        margin-top:5/$vh + vh;
+                        .time{
+                            color:$color1;
+                            line-height:40/$vh + vh;
+                        }
+                        .detail{
+                            width:80/$vw + vw;
+                            height:26/$vh + vh;
+                            border:1/$vw + vw solid $color1;
+                            text-align: center;
+                            line-height:26/$vh + vh;
+                            color:$color1;
+                            border-radius: 3/$vw + vw;
+                            margin: 7/$vh + vh 0;
+                            cursor: pointer;
+                        }
+                    }
+                }
+            }
+        }
+        .conTop{
+            width:1350/$vw + vw;
+            height:360/$vh + vh;
+            padding: 0 30/$vw + vw;
+            // border: 1/$vw +vw solid $color1;
+            // display: flex;
+            // justify-content: space-between;
+            .classBind{
+                width:390/$vw + vw;
+                height:360/$vh + vh;
+                float:left;
+                margin-right:25/$vw + vw;
+                position: relative;
+                // margin-bottom:20/$vh + vh;
+                // border: 1/$vw +vw solid $color1;
+            }
+            .classUse{
+                width:870/$vw + vw;
+                height:350/$vh + vh;
+                float:left;
+                margin-bottom:20/$vh + vh;
+                position: relative;
+                // border: 1/$vw +vw solid $color1;
+                .lineTitle{
+                    width:870/$vw +vw;
+                    height:30/$vh + vh;
+                    position: absolute;
+                    top:10/$vh + vh;
+                    padding: 0 20/$vw + vw;
+                    display: flex;
+                    justify-content: space-between;
+                    .leftTitle{
+                        width:200/$vw + vw;
+                        height:20/$vh +vh;
+                        color:#fff;
+                        font-size: 20/$vh + vh;
+                    }
+                    .rightTitle{
+                        width:160/$vw + vw;
+                        height:30/$vh +vh;
+                        .month{
+                            width:70/$vw + vw;
+                            height:30/$vh + vh;
+                            font-size: 14/$vh +vh;
+                            line-height: 30/$vh +vh;
+                            text-align: center;
+                            border:1/$vw + vw solid $color1;
+                            color:$color1;
+                            border-radius: 4/$vw + vw;
+                            cursor: pointer;
+                            float: left;
+                            margin-right: 10/$vw + vw;
+                        }
+                        .active{
+                            background-color: $color1;
+                            color:#fff;
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
+/* 学校详情--班级实时状态 -- end */
+
+/* 学校详情--班级统计状态 -- start */
+/* 学校详情--班级统计状态 -- end */
